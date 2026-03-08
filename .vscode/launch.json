@@ -1,0 +1,28 @@
+{
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "name": "Run Flask + Chrome",
+            "type": "debugpy",
+            "request": "launch",
+            "program": "${workspaceFolder}/backend/app.py",
+            "console": "integratedTerminal"
+        },
+        {
+            "name": "Open Chrome Flask",
+            "type": "chrome",
+            "request": "launch",
+            "url": "http://127.0.0.1:5000",
+            "webRoot": "${workspaceFolder}"
+        }
+    ],
+    "compounds": [
+        {
+            "name": "Flask + Chrome",
+            "configurations": [
+                "Run Flask + Chrome",
+                "Open Chrome Flask"
+            ]
+        }
+    ]
+}

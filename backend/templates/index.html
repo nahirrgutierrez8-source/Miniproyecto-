@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+
+    <title>Preguntas para los Virgenes de la Cueva</title>
+
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+
+</head>
+
+<body>
+
+<h1>Preguntas para los Virgenes de la Cueva</h1>
+
+<div id="quiz">
+
+    <h2 id="question">Loading...</h2>
+
+    <div id="answers"></div>
+
+    <br>
+
+    <button onclick="nextQuestion()">Siguiente</button>
+
+</div>
+
+<script src="{{ url_for('static', filename='script.js') }}"></script>
+
+</body>
+
+</html>
