@@ -1,0 +1,5 @@
+from backend.database import db
+
+class Player(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    nickname = db.Column(db.String(50), unique=True, nullable=False)
