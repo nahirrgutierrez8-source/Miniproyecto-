@@ -18,6 +18,7 @@ def login():
         db.session.commit()
 
     return jsonify({
+        "message": "Login successful",
         "id": player.id,
         "nickname": player.nickname
     })
