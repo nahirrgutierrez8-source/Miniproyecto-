@@ -1,26 +1,61 @@
 let questions = []
 let currentQuestion = 0
 let score = 0
+let player_id = null;
 
+
+// LOGIN
+async function login() {
+
+    console.log("Botón presionado");
+    
+    const nickname = document.getElementById("nickname").value;
+
+    if (!nickname) {
+    alert("Escribe un nickname");
+    return;
+}
+
+    const response = await fetch("/login", {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json"
+        },
+        body: JSON.stringify({ nickname })
+    });
+
+    const data = await response.json();
+
+    player_id = data.player_id;
+
+    document.getElementById("login-container").style.display = "none";
+    document.getElementById("quiz-container").style.display = "block";
+
+    loadQuestions();
+}
+
+
+// CARGAR PREGUNTAS
 async function loadQuestions(){
 
     const response = await fetch("/questions")
-
-    questions = await response.json()
-
+    questions = await response.json()   
+    
     showQuestion()
 
 }
 
+
+// MOSTRAR PREGUNTA
 function showQuestion(){
 
     const q = questions[currentQuestion]
 
     document.getElementById("question").innerText = q.question
 
-    const answersDiv = document.getElementById("answers")
+    const optionsDiv = document.getElementById("options") 
 
-    answersDiv.innerHTML = ""
+    optionsDiv.innerHTML = ""
 
     q.options.forEach(option => {
 
@@ -30,24 +65,45 @@ function showQuestion(){
 
         btn.onclick = () => checkAnswer(option)
 
-        answersDiv.appendChild(btn)
-
-        answersDiv.appendChild(document.createElement("br"))
+        optionsDiv.appendChild(btn)
 
     })
 
 }
 
+
+// VALIDAR RESPUESTA
 function checkAnswer(option){
 
-    if(option === questions[currentQuestion].answer){
+    const correct = questions[currentQuestion].answer;
 
-        score++
+    const buttons = document.querySelectorAll("#options button");
 
+    buttons.forEach(btn => {
+
+        if(btn.innerText === correct){
+            btn.style.backgroundColor = "green";
+            btn.style.color = "white";
+        }
+
+        if(btn.innerText === option && option !== correct){
+            btn.style.backgroundColor = "red";
+            btn.style.color = "white";
+        }
+
+        btn.disabled = true;
+    });
+
+    if(option === correct){
+        score++;
     }
-
+    setTimeout(() => {
+    nextQuestion();
+}, 1000);
 }
 
+
+// SIGUIENTE PREGUNTA
 function nextQuestion(){
 
     currentQuestion++
@@ -59,11 +115,9 @@ function nextQuestion(){
     }
     else{
 
-        document.getElementById("quiz").innerHTML =
-        "<h2>Tu puntaje: " + score + "</h2>"
+        document.getElementById("quiz-container").innerHTML =
+"<h2 class='result'>🏆 Puntaje final: " + score + "</h2>";
 
     }
 
 }
-
-window.onload = loadQuestions   

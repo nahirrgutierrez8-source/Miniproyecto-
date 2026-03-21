@@ -11,13 +11,27 @@
 
 <body>
 
-<h1>Preguntas para los Virgenes de la Cueva</h1>
+<!-- LOGIN -->
+<div id="login-container">
 
-<div id="quiz">
+    <h1>Quiz Game</h1>
+
+    <input 
+        type="text" 
+        id="nickname" 
+        placeholder="Enter your nickname"
+    >
+
+    <button onclick="login()">Start Game</button>
+
+</div>
+
+<!-- QUIZ -->
+<div id="quiz-container" style="display:none;">
 
     <h2 id="question">Loading...</h2>
 
-    <div id="answers"></div>
+    <div id="options"></div>
 
     <br>
 
@@ -26,6 +40,7 @@
 </div>
 
 <script src="{{ url_for('static', filename='script.js') }}"></script>
+<script src="/static/script.js"></script>
 
 </body>
 

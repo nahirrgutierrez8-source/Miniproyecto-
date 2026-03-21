@@ -1,25 +1,86 @@
-body{
-
-    font-family: Arial;
+/* Fondo general */
+body {
+    font-family: 'Segoe UI', sans-serif;
+    background: linear-gradient(135deg, #1fa2ff, #12d8fa, #a6ffcb);
+    margin: 0;
+    padding: 0;
     text-align: center;
-    background-color: #0cb1ce;
-
+    color: #fff;
 }
 
-#quiz{
+/* Contenedor principal */
+#login-container, #quiz-container {
+    margin-top: 100px;
+}
 
-    background: white;
-    width: 400px;
-    margin: auto;
-    padding: 20px;
+/* Título */
+h1 {
+    font-size: 40px;
+    margin-bottom: 20px;
+}
+
+/* Pregunta */
+#question {
+    font-size: 28px;
+    margin-bottom: 30px;
+}
+
+/* Input */
+input {
+    padding: 12px;
+    border-radius: 8px;
+    border: none;
+    width: 200px;
+    margin-right: 10px;
+}
+
+/* Botones generales */
+button {
+    padding: 12px 20px;
+    margin: 10px;
+    border: none;
     border-radius: 10px;
-
+    cursor: pointer;
+    font-weight: bold;
+    transition: 0.3s;
 }
 
-button{
+/* Botón Start */
+#login-container button {
+    background-color: #ffffff;
+    color: #333;
+}
 
-    margin: 5px;
-    padding: 10px 20px;
-    cursor: pointer;
+#login-container button:hover {
+    background-color: #ddd;
+}
 
+/* Opciones */
+#options button {
+    display: inline-block;
+    background-color: white;
+    color: #333;
+    min-width: 150px;
+}
+
+/* Hover opciones */
+#options button:hover {
+    background-color: #ffe066;
+    transform: scale(1.05);
+}
+
+/* Botón siguiente */
+#quiz-container button {
+    background-color: #222;
+    color: white;
+}
+
+#quiz-container button:hover {
+    background-color: #444;
+}
+
+/* Resultado final */
+.result {
+    font-size: 30px;
+    margin-top: 40px;
 }
